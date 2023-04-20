@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Shree Mahalaxmi jewellers Calculator</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.1/dist/bundles/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+
+  <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="icon.png">
+  </head>
+  <body>
+    <div class="container">
+<div class="logo-container">
+        <img class="logo" src="logo.png" alt="Logo">
+      <h1>Shri Mahalaxmi Jewellers Calculator</h1>
+      <form>
+        <div class="form-group">
+          <label for="main-amount">Gold/silver Rate:</label>
+          <input type="number" class="form-control" id="main-amount" name="main-amount" required>
+        </div>
+
+        <div class="form-group">
+          <label for="first-amount">Tax %:</label>
+          <input type="number" class="form-control" id="first-amount" name="first-amount" required>
+        </div>
+
+        <button type="button" class="btn btn-primary" onclick="calculateFirst()">totel</button>
+        
+        <div id="first-result" class="mt-4"></div>
+
+        <div class="form-group mt-4">
+          <label for="second-amount">Making charges:</label>
+          <input type="number" class="form-control" id="second-amount" name="second-amount" required>
+        </div>
+
+        <button type="button" class="btn btn-primary" onclick="calculateSecond()">totel</button>
+
+        <div id="second-result" class="mt-4"></div>
+
+        <div class="form-group mt-4">
+          <label for="third-amount">weight:</label>
+          <input type="number" class="form-control" id="third-amount" name="third-amount" required>
+        </div>
+
+        <button type="button" class="btn btn-primary" onclick="calculateTotal()">Final amount</button>
+
+        <div id="total-result" class="mt-4"></div>
+
+      </form>
+    </div>
+
+    <script>
+      function calculateFirst() {
+        var mainAmount = parseFloat(document.getElementById('main-amount').value);
+        var firstAmount = parseFloat(document.getElementById('first-amount').value);
+        var total = mainAmount + (firstAmount / 100) * mainAmount;
+        document.getElementById('first-result').innerHTML = "<p>The first total is: " + total.toFixed(2) + "</p>";
+      }
+
+      function calculateSecond() {
+        var firstTotal = parseFloat(document.getElementById('first-result').textContent.match(/\d+\.\d{2}/));
+        var secondAmount = parseFloat(document.getElementById('second-amount').value);
+        var total = firstTotal + secondAmount;
+        document.getElementById('second-result').innerHTML = "<p>The second total is: " + total.toFixed(2) + "</p>";
+      }
+
+      function calculateTotal() {
+        var secondTotal = parseFloat(document.getElementById('second-result').textContent.match(/\d+\.\d{2}/));
+        var thirdAmount = parseFloat(document.getElementById('third-amount').value);
+        var finalTotal = secondTotal * thirdAmount;
+        document.getElementById('total-result').innerHTML = "<p>The final total is: " + finalTotal.toFixed(2) + "</p>";
+      }
+    </script>
+  </body>
+</html>
